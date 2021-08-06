@@ -1,35 +1,34 @@
 package com.alecbrando.bloom
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.alecbrando.bloom.ui.theme.BloomTheme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(navController: NavController) {
     Surface(
         color = MaterialTheme.colors.primary,
         modifier = Modifier
             .fillMaxSize()
     ) {
         WelcomeBackground()
-        WelcomeScreenContent()
+        WelcomeScreenContent(navController)
     }
 }
 
 @Composable
-private fun WelcomeScreenContent() {
+private fun WelcomeScreenContent(navController: NavController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -44,7 +43,7 @@ private fun WelcomeScreenContent() {
         Spacer(modifier = Modifier.padding(vertical = 40.dp))
         CreateAccountButton()
         Spacer(modifier = Modifier.padding(vertical = 8.dp))
-        LoginButton()
+        LoginButton(navController)
     }
 }
 
@@ -109,10 +108,15 @@ private fun CreateAccountButton() {
 }
 
 @Composable
-private fun LoginButton() {
+private fun LoginButton(navController: NavController) {
     TextButton(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = { /*TODO*/ }) {
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        shape = MaterialTheme.shapes.medium,
+        onClick = {
+            navController.navigate("login_route")
+        }) {
         Text(
             color = MaterialTheme.colors.secondary,
             text = "Log in"
@@ -141,7 +145,7 @@ private fun WelcomeBackground() {
 @Composable
 private fun PreviewDarkWelcomeScreen() {
     BloomTheme(darkTheme = true) {
-        WelcomeScreen()
+        WelcomeScreen(navController = rememberNavController())
     }
 
 }
@@ -150,6 +154,6 @@ private fun PreviewDarkWelcomeScreen() {
 @Composable
 private fun PreviewLightWelcomeScreen() {
     BloomTheme(darkTheme = false) {
-        WelcomeScreen()
+        WelcomeScreen(navController = rememberNavController())
     }
 }
