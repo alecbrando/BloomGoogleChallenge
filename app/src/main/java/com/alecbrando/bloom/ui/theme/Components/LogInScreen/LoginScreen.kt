@@ -35,69 +35,84 @@ fun LoginScreen(navController: NavController) {
                 text = "Log in with email",
                 style = MaterialTheme.typography.h1
             )
-            OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                modifier = Modifier
-                    .height(56.dp)
-                    .fillMaxWidth(),
-                label = {
-                    Text(
-                        text = "Email address",
-                        style = MaterialTheme.typography.body1
-                    )
-                }
-            )
-            OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                modifier = Modifier
-                    .height(56.dp)
-                    .fillMaxWidth(),
-                label = {
-                    Text(
-                        text = "Password (8+ characters)",
-                        style = MaterialTheme.typography.body1
-                    )
-                }
-            )
-            Text(
-                text = AnnotatedString(
-                    text = "By clicking below you agree to our",
-                ).plus(
-                    AnnotatedString(
-                        text = " Terms of Use ",
-                        spanStyle = SpanStyle(textDecoration = TextDecoration.Underline)
-                    )
-                ).plus(
-                    AnnotatedString(
-                        text = " and consent to our ",
-                    )
-                ).plus(
-                    AnnotatedString(
-                        text = "Privacy Policy",
-                        spanStyle = SpanStyle(textDecoration = TextDecoration.Underline)
-                    )
-                ),
-                style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 16.dp)
-            )
-            Button(
-                onClick = { /*TODO*/ },
-                shape = MaterialTheme.shapes.medium,
-                colors = buttonColors(MaterialTheme.colors.secondary),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
-            ) {
-                Text(
-                    text = "Log in",
-                    color = MaterialTheme.colors.onSecondary
-                )
-            }
+            LoginButtons()
+            PrivatePolicyText()
+            LoginButton()
         }
     }
+}
+
+@Composable
+private fun LoginButton() {
+    Button(
+        onClick = { /*TODO*/ },
+        shape = MaterialTheme.shapes.medium,
+        colors = buttonColors(MaterialTheme.colors.secondary),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp)
+    ) {
+        Text(
+            text = "Log in",
+            color = MaterialTheme.colors.onSecondary
+        )
+    }
+}
+
+@Composable
+private fun PrivatePolicyText() {
+    Text(
+        text = AnnotatedString(
+            text = "By clicking below you agree to our ",
+        ).plus(
+            AnnotatedString(
+                text = "Terms of Use",
+                spanStyle = SpanStyle(textDecoration = TextDecoration.Underline)
+            )
+        ).plus(
+            AnnotatedString(
+                text = " and consent to our ",
+            )
+        ).plus(
+            AnnotatedString(
+                text = "Privacy Policy",
+                spanStyle = SpanStyle(textDecoration = TextDecoration.Underline)
+            )
+        ),
+        style = MaterialTheme.typography.body2,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 16.dp)
+    )
+}
+
+@Composable
+private fun LoginButtons() {
+    OutlinedTextField(
+        value = "",
+        onValueChange = {},
+        modifier = Modifier
+            .height(56.dp)
+            .fillMaxWidth(),
+        label = {
+            Text(
+                text = "Email address",
+                style = MaterialTheme.typography.body1
+            )
+        }
+    )
+    OutlinedTextField(
+        value = "",
+        onValueChange = {},
+        modifier = Modifier
+            .height(56.dp)
+            .fillMaxWidth(),
+        label = {
+            Text(
+                text = "Password (8+ characters)",
+                style = MaterialTheme.typography.body1
+            )
+        }
+    )
 }
 
 
