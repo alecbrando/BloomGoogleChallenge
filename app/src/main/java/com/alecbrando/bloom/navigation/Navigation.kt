@@ -1,12 +1,12 @@
 package com.alecbrando.bloom.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.alecbrando.bloom.Components.Home.HomeScreen
 import com.alecbrando.bloom.WelcomeScreen
-import com.alecbrando.bloom.ui.theme.Components.LogInScreen.LoginScreen
+import com.alecbrando.bloom.Components.LogInScreen.LoginScreen
 
 @Composable
 fun Navigation(){
@@ -18,6 +18,9 @@ fun Navigation(){
         }
         composable("login_route") {
             LoginScreen(navController)
+        }
+        composable("home_route") {
+            HomeScreen(navController)
         }
     }
 }

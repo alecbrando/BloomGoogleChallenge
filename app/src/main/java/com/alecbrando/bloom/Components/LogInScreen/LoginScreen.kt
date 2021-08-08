@@ -1,4 +1,4 @@
-package com.alecbrando.bloom.ui.theme.Components.LogInScreen
+package com.alecbrando.bloom.Components.LogInScreen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -37,15 +37,17 @@ fun LoginScreen(navController: NavController) {
             )
             LoginButtons()
             PrivatePolicyText()
-            LoginButton()
+            LoginButton(navController)
         }
     }
 }
 
 @Composable
-private fun LoginButton() {
+private fun LoginButton(navController : NavController) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {
+            navController.navigate("home_route")
+                  },
         shape = MaterialTheme.shapes.medium,
         colors = buttonColors(MaterialTheme.colors.secondary),
         modifier = Modifier
